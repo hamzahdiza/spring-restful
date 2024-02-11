@@ -3,6 +3,7 @@ package diza.restful.service;
 
 import diza.restful.entity.User;
 import diza.restful.model.RegisterUserRequest;
+import diza.restful.model.UpdateUserRequest;
 import diza.restful.model.UserResponse;
 import diza.restful.repository.UserRepository;
 import diza.restful.security.BCrypt;
@@ -52,6 +53,32 @@ public class UserService {
         return UserResponse.builder()
                 .username(user.getUsername())
                 .name(user.getName_user())
+                .build();
+    }
+
+
+
+    @Transactional
+    public UserResponse update(User user, UpdateUserRequest request) {
+        validationService.validate(request);
+
+        log.info("REQUEST : {}", request);
+
+        if (Objects.nonNull(request.getName_user())) {
+            user.setName_user(request.getName_user());
+        }
+
+        if (Objects.nonNull(request.getPassword())) {
+            user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
+        }
+
+        userRepository.save(user);
+
+        log.info("USER : {}", user.getName_user());
+
+        return UserResponse.builder()
+                .name(user.getName_user())
+                .username(user.getUsername())
                 .build();
     }
 }

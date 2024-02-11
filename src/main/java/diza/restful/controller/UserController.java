@@ -1,7 +1,9 @@
 package diza.restful.controller;
 
 
+import diza.restful.entity.User;
 import diza.restful.model.RegisterUserRequest;
+import diza.restful.model.UserResponse;
 import diza.restful.model.WebResponse;
 import diza.restful.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,13 @@ public class UserController {
         return WebResponse.<String>builder().data("OK").build();
     }
 
+    @GetMapping(
+            path = "/api/users/current",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<UserResponse> get(User user) {
+        UserResponse userResponse = userService.get(user);
+        return WebResponse.<UserResponse>builder().data(userResponse).build();
+    }
 }
 

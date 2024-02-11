@@ -3,6 +3,7 @@ package diza.restful.service;
 
 import diza.restful.entity.User;
 import diza.restful.model.RegisterUserRequest;
+import diza.restful.model.UserResponse;
 import diza.restful.repository.UserRepository;
 import diza.restful.security.BCrypt;
 import jakarta.validation.ConstraintViolation;
@@ -47,4 +48,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public UserResponse get(User user) {
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName_user())
+                .build();
+    }
 }

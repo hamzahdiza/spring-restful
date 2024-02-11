@@ -1,5 +1,6 @@
 package diza.restful.service;
 
+import diza.restful.model.UpdateContactRequest;
 import diza.restful.repository.ContactRepository;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,23 @@ public class ContactService {
 
         return toContactResponse(contact);
     }
+
+    @Transactional
+    public ContactResponse update(User user, UpdateContactRequest request) {
+        validationService.validate(request);
+
+        Contact contact = contactRepository.findFirstByUserAndId(user, request.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found"));
+
+        contact.setFirstName(request.getFirstName());
+        contact.setLastName(request.getLastName());
+        contact.setEmail(request.getEmail());
+        contact.setPhone(request.getPhone());
+        contactRepository.save(contact);
+
+        return toContactResponse(contact);
+    }
+
 
     private ContactResponse toContactResponse(Contact contact) {
         return ContactResponse.builder()

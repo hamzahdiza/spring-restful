@@ -10,7 +10,7 @@ Request Body :
 {
   "username" : "hamzah",
   "password" : "12345678",
-  "name" : "Hamzah Diza Santoso" 
+  "name_user" : "Hamzah Diza Santoso" 
 }
 ```
 
@@ -76,7 +76,7 @@ Response Body (Success) :
 {
   "data" : {
     "username" : "hamzah",
-    "name" : "Hamzah Diza Santoso"
+    "name_user" : "Hamzah Diza Santoso"
   }
 }
 ```
@@ -101,7 +101,7 @@ Request Body :
 
 ```json
 {
-  "name" : "Hamzah Diza", // put if only want to update name
+  "name_user" : "Hamzah Diza", // put if only want to update name
   "password" : "123456789" // put if only want to update password
 }
 ```
@@ -112,7 +112,7 @@ Response Body (Success) :
 {
   "data" : {
     "username" : "hamzah",
-    "name" : "Hamzah Diza Santoso"
+    "name_user" : "Hamzah Diza Santoso"
   }
 }
 ```

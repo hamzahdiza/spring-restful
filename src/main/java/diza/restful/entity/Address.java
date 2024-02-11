@@ -1,4 +1,4 @@
-package entity;
+package diza.restful.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

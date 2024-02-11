@@ -1,4 +1,4 @@
-package entity;
+package diza.restful.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class User {
 
     private String password;
 
-    private String name;
+    private String name_user;
 
     private String token;
 

@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface AddressRepository extends JpaRepository<Address, String> {
 
     Optional<Address> findFirstByContactAndId(Contact contact, String id);
+
+    List<Address> findAllByContact(Contact contact);
 }
